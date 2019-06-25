@@ -1,0 +1,245 @@
+\documentclass[12pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{relsize}
+\usepackage{bbold}
+\usepackage{mathtext}
+\usepackage{pdfpages}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=35mm,
+ top=25mm,
+ bottom=25mm,
+ right=20mm,
+ }
+
+\begin{document}
+\noindent I think of a vector space, $V$, as being defined by a map.
+\begin{equation}
+V : E \rightarrow \mathbb{C}^{n}
+\end{equation}
+\noindent each $\mathbf{v} \in V$, the tuple $c\in \mathbb{C}$ used to represent
+$v$ on $E$.\\
+
+\noindent To determine the components of reprentation, i.e., the tuple, $c$, corresponding
+to a given vector, $v$, we can define a function, $v(e)$,
+which maps from a member, $e \in E$, to a number $c \in \mathbb{C}$.
+\begin{equation}
+v :  e \rightarrow c \text{ \  \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ }  e\in E \text{ \ \ }c \in \mathbb{C} \text{\ \ \ } v \in V 
+\end{equation}
+\noindent To see why, consider a vector $\mathbf{v}$ defined on a basis $E$
+\begin{equation}
+\mathbf{v} = \sum_{i=1}^{dim(E)} f(\mathbf{e}_{i}) \mathbf{e}_{i} = \sum_{i=1}^{dim(E)} v_{i} \mathbf{e}_{i}
+\end{equation}
+\noindent In other words, $v_{i}$, is just shorthand for $f(\mathbf{e}_{i})$. 
+The $f$ which determines the component of the vector is a linear function defined on 
+V. These functions form a space all of their own, denoted $V^{*}$, and referred to as
+the dual space of $V$.
+\\
+
+\noindent As an example take a 3-dimensional vector, $\mathbf{w}$, represented
+on the Cartesian basis, $E = \{\mathbf{x},\mathbf{y},\mathbf{z}\}$ :
+\begin{equation}
+\mathbf{w} = g(\mathbf{x})\mathbf{x}+g(\mathbf{y})\mathbf{y}+g(\mathbf{z})\mathbf{z}
+ = w_{x}\mathbf{x}+w_{y}\mathbf{y}+w_{z}\mathbf{z}
+\end{equation}
+\noindent note the coeffients $\{w_{x},w_{y},w_{z}\}\in \mathbb{C}^{3}$, although
+if we are talking about Cartesian vectors we assume the values of these coefficients
+to be real, so the tuple is in $\mathbb{R}^{3}$.\\
+
+\noindent Usually we think of $f(e_{i})$, as being a projection of
+vector $\mathbf{v}$ represented on , onto the onto the basis functions $\mathbf{e}$. 
+Essentially, the dual, $v*$, of vector $v$ is defined as the tuple of functions which map 
+from the members of the basis, $E$, to the coefficients used to represent $v$ on this basis.\\
+
+\noindent A vector operator is one which that transforms like a vector.
+For example, if we have a vector operator $a\in A$, we can
+define it on an basis $B$, were the members of $\hat{b}$ are 
+themselves operators, e.g., for a Cartesian vector operator
+\begin{equation}
+\mathbf{\hat{a}}  = a_{x}\hat{b}_{x}+a_{y}\hat{b}_{y}+a_{z}\hat{b}_{z}
+\end{equation}
+here $\{a_{i}\}_{i=x,y,z}$ are just coefficients. A rotation, $\hat{R}$, of the
+vector operator $\mathbf{\hat{a}}$ 
+\begin{equation}
+\mathbf{\hat{a}'} = \hat{R}\mathbf{\hat{a}}
+\end{equation}
+can be effected by a transformation of the components $\{a_{i}\}_{i=x,y,z}$
+\begin{equation}
+\hat{a}_{i'} = \sum_{i=x,y,z} R_{i'i} a_{i}\hat{b}_{i}
+\end{equation}
+\noindent where $R_{ij}$ is are the components of the operator used to
+effect rotations on the Cartesian basis $\{x,y,z\}$. In the above case,
+the operators $\{b_{i}\}_{i=x,y,z}$ form a vector space which is isomorphic
+to the Cartesian space $\{x,y,z\}$. \\
+
+\noindent Now we can move onto the definition of tensors. A tensor, $T$, of type
+$(r,s)$, on a vector space $V$ is a C-valued function on
+\begin{equation}
+V\times V\times ... \times V \times V^{*} \times V^{*} \times ... \times V^{T}
+\end{equation}
+this is supposed to be a product space formed from $r$ products of $V$, and $s$ products
+of $V^{*}$ (the dual of $V$). The tensor is linear in each argument, i.e.,
+\begin{equation}
+T(v_{1}+cw, v_{2},...., v_{r}, f_{1}, ..., f_{s} )=
+T(v_{1}, v_{2},...., v_{r}, f_{1}, ..., f_{s} )+
+cT(w, v_{2},...., v_{r}, f_{1}, ..., f_{s} )
+\end{equation}
+Here $v_{i}\in V$ and $f_{i} \in V^{*}$.
+In other words, the tensor is multilinear function defined on a space formed
+from r vectors and s dual vectors. Linear operators can be viewed
+as tensors of type $(1,1)$, as they take one vector and one dual vector,
+\begin{equation}
+A(f,v) = f(Av) = A_{fv} 
+\end{equation}
+Here A is acting on v to return a vector, $v_{out}$, in V, then f, the dual vector acts on 
+this vector to return the component, $A_{fv}$, of the tensor associated with inputs $f$ and $v$.\\
+
+\noindent As with the previous definition for vectors, we can write
+a definition of a tensor represented on a basis formed from the product of a
+the Cartesian basis $\{ e_{x},e_{y},e_{z}\}$ and it's dual (which is also
+$\{e^{x},e^{y},e^{z}\}$ as the Cartesian space is self dual). This product
+space has members $\{ e^{x}e_{x}, e^{x}e_{y}, e^{x}e_{z}, e^{y}e_{x},
+e^{y}e_{y}, e^{y}e_{z}, e^{z}e_{x}, e^{z}e_{y}, e^{z}e_{z} \}$, hence we
+may write the tensor as tensor as
+\begin{equation}
+A(\mathbf{f},\mathbf{q}) = \sum_{i,j} A_{i}^{j}e^{i}e_{j}
+\end{equation}
+\noindent 
+
+\noindent An interesting thing to note is sometimes product spaces,can
+be decomposed into a sum of other spaces, e.g.,
+\begin{equation}
+\bigotimes_{i=1}^{N} V_{i} =  \bigoplus_{j=1} W_{j}
+\end{equation}
+a common example is the decomposition of spaces formed from the product of angular momenta. For example,
+the product space $\frac{1}{2} \times \frac{1}{2}$, formed from the product of the Hilbert spaces associated
+with two particles each with angular momenta $j_{z} = \frac{1}{2}$ can be decomsed into a sum of two
+1-particle Hilberts spaces, $0$ and $1$. The former being a spinless particle, whilst the latter is
+a particle with spin-1. This relation is commonly written
+\begin{equation}
+\frac{1}{2}\otimes \frac{1}{2} = 0\oplus 1
+\end{equation}
+\noindent The reason we care about this is that if the space on which a tensor is defined can be decomposed in
+this manner, then an equivalent decomposition must exist for the tensor. Consequently, an example of such a tensor 
+decomposition might be
+\begin{equation}
+A = B+C
+\end{equation}
+where A is a rank 2 tensor, and B and C are both rank one tensors. This has important applications in 
+Socnini's theory. Before moving on to see how this is applied, let us first consider tensor operators, 
+which like the vector operators mentioned above possess the feature that they transform 
+as tensors do. The difference is that the spaces, $V$, and, $V^{*}$, are themselves comprised of operators.
+for example,  we might represent a tensor of (1,1),as 
+\begin{equation}
+\hat{A} = \sum_{i,j} A_{i}^{j}\hat{s}^{i}\hat{s}_{j}
+\end{equation}
+where the ${\hat{s}_{i,j}}$ are operators which act on a single vector (or dual vector). Tensor operators
+transform in much the same way as normal tensors
+\begin{equation}
+\hat{A}' = \hat{R}\hat{A}= \sum_{i,i',j,j'} R_{ii'}R_{jj'}A_{i'}^{j'}\hat{b}^{i}\hat{b}_{j} 
+\end{equation}
+The interesting thing here is that instead of transforming the coefficients of the tensor operator 
+directly, we could in principle transform the basis in terms of which the tensor is defined. For example,
+\begin{equation}
+\hat{A}' = \hat{R}\hat{A}= \sum_{i,i',j,j'} A_{i}^{j}R_{ii'}R_{jj'} \hat{b}^{i'}\hat{b}_{j'} .
+\end{equation}
+\noindent This approach can be taken one step further if the aswell as begin represented on 
+a product space, the tensor operator is formed from the product of two vector operators, e.g.,
+\begin{equation}
+\hat{A} = \hat{v}\otimes\hat{w} 
+\end{equation}
+where each of these vectors may be represented on a basis
+\begin{equation}
+\mathbf{\hat{v}}  = v_{x}\hat{b}_{x}+v_{y}\hat{b}_{y}+v_{z}\hat{b}_{z}
+\end{equation}
+\begin{equation}
+\mathbf{\hat{w}}  = w_{x}\hat{b}_{x}+w_{y}\hat{b}_{y}+w_{z}\hat{b}_{z}
+\end{equation}
+In this case it is possible to effect a transformation of the tensor operator by transforming 
+each one of the vector operators from which it is composed, e.g.,
+\begin{equation}
+\hat{A}' = \hat{R}\hat{A}= \hat{U}_{v}
+           \hat{U}_{w} \hat{v}\otimes\hat{w}
+\end{equation}
+Therefore, we could transform the tensor operator by performing a transformation on the
+bases used to represent each of the vector operators from which it is composed. This
+comes in very useful in going from the standard definition of magnetic resonance tensors, to
+the definition laid out by Soncini.\\
+
+\noindent An example of the above is an operator $\hat{A} = \hat{s}^{(1)}\otimes\hat{s}^{(2)}$, 
+which is composed of two spin operators, one acting on vectors defining particle 1, the other acting on vectors
+defining particle 2. When each of these spin operators is represented in a space formed by a Kramers doublet
+we can expand them out in a sequence of Pauli Matrices, e.g.,
+\begin{equation}
+[\hat{s}_{1}]_{\{\phi, \overline{\phi}\}} = \sum_{i}^{x,y,z} c_{i}\sigma_{i}
+\end{equation}
+The product basis used for representing the tensor is formed from the Kronecker product of 
+each of these basis, e.g., one member, $\sigma^{(2e)}_{ij}$, of this product basis is 
+given by
+\begin{equation}
+\sigma^{(two)}_{ij} = \sigma_{i}\otimes \sigma_{j} 
+\end{equation}
+Definition of these product matrices can be found in the spin\_mats.pdf.\\
+
+
+\noindent This basis is not particularly nice; it contains 9 distinct matrices (16 if we
+were to also include the identity in our basis). Furthermore,
+it is formed from $4\time4$ matrices, when typically we know that two interacting spins 
+suggests a triplet and a singlet, suggesting a 1\times1 matrix , and $3\times3$ matrix.
+
+
+
+
+
+
+and it is impossible to decompose this space into a 
+may be possible to rexpress it as a sum of other,lower ra tensors, defined on different spaces. For example,
+we might have 
+\begin{equation}
+A(f,v) = B(x) + D(y)
+\end{equation}
+ 
+
+\noindent In a similar vein, we could define a vector operator, $\tilde{A}$, which
+takes two vectors. 
+ with coefficients $\{\tilde{a}_{i}\}_{i=x,y,z}$. Now define a member of $a\in A$ represented
+on the space of all complex, Hermtian, 2$\times$2 matrices, $H_{2}(\mathbf{C})$, which we shall
+suggestively write
+\begin{equation}
+[a]_{H_{2\times 2}} = 
+\begin{bmatrix}
+a_{z} + c     & a_{x}+ia_{y} \\ 
+a_{x}-ia_{y}  & -a_{z} +c
+\end{bmatrix}
+\end{equation}
+ 
+\noindent So the components of a representation, $[v]_{E}$ of a vector $v\in V$  on a basis $E$ is 
+\begin{equation}
+[v]_{E} = \sum f(e_{i}) = c_{i}
+\end{equation}
+
+\noindent The map corresponding to an n-dimensional vector takes use from one space, $E$, (which can
+be thought of as the basis), to the space of all $n$-tuples of complex numbers, $\mathbb{C}^{n}$,
+which can be thought of as the coefficients of the vectors.
+So
+\begin{equation}
+v(e^{i}) \rightarrow v_{i}
+\end{equation}
+For reasons of simplicity 
+
+\begin{equation}
+v(e_{i}) = 
+\end{equation}
+
+
+\end{document}
